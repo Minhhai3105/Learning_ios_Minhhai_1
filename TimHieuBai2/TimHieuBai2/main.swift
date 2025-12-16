@@ -9,30 +9,53 @@
 
 import Foundation
 
-struct User {
-    var name: String
+
+func Struct() {
+    struct User {
+        var name: String
+    }
+
+    var a = User(name: "Hải")
+    var b = a
+    b.name = "Minh"
+
+    print(a.name)
+    print(b.name)
 }
 
-var u1 = User(name: "Hải")
-var u2 = u1
-u2.name = "Minh"
-
-print(u1.name)
-print(u2.name)
 
 // vd class
-print("\nClass:")
-
-class UserClass {
-    var name: String
-    init(name: String) {
-        self.name = name
+func Class(){
+    class UserClass {
+        var name: String
+        init(name: String) {
+            self.name = name
+        }
     }
+
+    let c1 = UserClass(name: "Hải")
+    let c2 = c1
+    c2.name = "Minh"
+
+    print(c1.name)
+    print(c2.name)
 }
 
-let c1 = UserClass(name: "Hải")
-let c2 = c1
-c2.name = "Minh"
 
-print(c1.name)
-print(c2.name)
+
+
+func Counter(){
+    class Counter {
+        var value = 0
+    }
+
+    let d1 = Counter()
+    let d2 = d1
+
+    d2.value += 1
+    print(d1.value) // 1
+}
+
+Struct()
+Class()
+Counter()
