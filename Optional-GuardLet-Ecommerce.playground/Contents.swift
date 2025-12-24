@@ -165,3 +165,18 @@ createProduct(sku: "SKU-001", name: nil, priceText: "20000")
 createProduct(sku: "ABC-002", name: "iPhone11", priceText: "20000")
 createProduct(sku: "SKU-003", name: "iPhone12", priceText: "-10")
 createProduct(sku: "SKU-004", name: "iPhone6", priceText: "20000")
+
+
+
+// =======================================================
+// MARK: - Bài 12 – Hiểu inout
+// Commit: "B12 - Inout basic"
+// =======================================================
+func increase(_ value: inout Int) {
+    value += 1
+}
+printHeader("Test Bài 12")
+var number = 10
+print("Trước increase:", number)
+increase(&number)
+print("Sau increase:", number)
