@@ -107,3 +107,61 @@ printHeader("Test Bài 10")
 calcTotal(priceText: "10000", quantityText: "2")
 calcTotal(priceText: "abc", quantityText: "2")
 calcTotal(priceText: "10000", quantityText: "-1")
+
+
+
+// =======================================================
+// MARK: - Bài 11 – Tạo sản phẩm
+// Commit: "B11 - Create product with validation"
+// =======================================================
+func createProduct(
+    sku: String?,
+    name: String?,
+    priceText: String?
+) -> Product? {
+    
+    guard let sku = sku, !sku.isEmpty else {
+        print("SKU không được rỗng")
+        return nil
+    }
+    
+    guard sku.hasPrefix("SKU-") else {
+        print("SKU sai định dạng")
+        return nil
+    }
+    
+    guard let name = name, !name.isEmpty else {
+        print("Tên sản phẩm không được rỗng")
+        return nil
+    }
+    
+    guard let priceText = priceText, !priceText.isEmpty else {
+        print("Chưa nhập giá")
+        return nil
+    }
+    
+    guard let price = Double(priceText) else {
+        print("Giá không hợp lệ")
+        return nil
+    }
+    
+    guard price > 0 else {
+        print("Giá phải lớn hơn 0")
+        return nil
+    }
+    
+    let product = Product(
+        sku: sku,
+        name: name,
+        price: price
+    )
+    
+    print("Tạo sản phẩm thành công:", product.sku)
+    return product
+}
+printHeader("Test Bài 11")
+createProduct(sku: nil, name: "iPhone", priceText: "20000")
+createProduct(sku: "SKU-001", name: nil, priceText: "20000")
+createProduct(sku: "ABC-002", name: "iPhone11", priceText: "20000")
+createProduct(sku: "SKU-003", name: "iPhone12", priceText: "-10")
+createProduct(sku: "SKU-004", name: "iPhone6", priceText: "20000")
