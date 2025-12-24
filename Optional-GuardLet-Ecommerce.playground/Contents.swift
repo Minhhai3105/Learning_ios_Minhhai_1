@@ -230,3 +230,46 @@ addToCart(sku: "SKU-001", quantityText: "-1", cart: &cart, priceList: priceList)
 addToCart(sku: "SKU-001", quantityText: "2", cart: &cart, priceList: priceList)
 
 print("Cart hiện tại:", cart)
+
+
+// =======================================================
+// MARK: - Bài 14 – Process Add To Cart
+// Commit: "B14 - Process add to cart"
+// =======================================================
+func processAddToCart(
+    sku: String?,
+    name: String?,
+    priceText: String?,
+    quantityText: String?,
+    cart: inout [String: Int]
+) {
+    
+    guard let product = createProduct(
+        sku: sku,
+        name: name,
+        priceText: priceText
+    ) else {
+        return
+    }
+    
+    guard let quantityText = quantityText,
+          let quantity = Int(quantityText),
+          quantity > 0 else {
+        print("Số lượng không hợp lệ")
+        return
+    }
+    
+    cart[product.sku, default: 0] += quantity
+    
+    print("Thêm thành công: \(product.sku) - \(product.name)")
+}
+
+printHeader("Test Bài 14")
+processAddToCart(
+    sku: "SKU-001",
+    name: "iPhone4",
+    priceText: "20.000.000",
+    quantityText: "2",
+    cart: &cart
+)
+print("Cart cuối:", cart)
