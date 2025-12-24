@@ -180,3 +180,53 @@ var number = 10
 print("Trước increase:", number)
 increase(&number)
 print("Sau increase:", number)
+
+
+
+// =======================================================
+// MARK: - Bài 13 – Add to Cart
+// Commit: "B13 - Add product to cart"
+// =======================================================
+var cart: [String: Int] = ["SKU-001": 1]
+
+let priceList: [String: Double] = [
+    "SKU-001": 120000,
+    "SKU-002": 99000
+]
+func addToCart(
+    sku: String?,
+    quantityText: String?,
+    cart: inout [String: Int],
+    priceList: [String: Double]
+) {
+    
+    guard let sku = sku, !sku.isEmpty else {
+        print("SKU không hợp lệ")
+        return
+    }
+    
+    guard priceList[sku] != nil else {
+        print("SKU không tồn tại trong bảng giá")
+        return
+    }
+    
+    guard let quantityText = quantityText,
+          let quantity = Int(quantityText),
+          quantity > 0 else {
+        print("Số lượng không hợp lệ")
+        return
+    }
+    
+    cart[sku, default: 0] += quantity
+    
+    print("Đã thêm \(sku) - SL: \(quantity)")
+}
+
+printHeader("Test Bài 13")
+
+addToCart(sku: nil, quantityText: "2", cart: &cart, priceList: priceList)
+addToCart(sku: "SKU-003", quantityText: "2", cart: &cart, priceList: priceList)
+addToCart(sku: "SKU-001", quantityText: "-1", cart: &cart, priceList: priceList)
+addToCart(sku: "SKU-001", quantityText: "2", cart: &cart, priceList: priceList)
+
+print("Cart hiện tại:", cart)
