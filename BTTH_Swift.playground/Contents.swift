@@ -51,7 +51,7 @@ var carName: [String] = []
 for car in cars {
     carName.append(car.name)
 }
-print("\nDanh sách tên xe:", carName)
+print("\n Danh sách tên xe:", carName)
 // câu 5
 print("\n Câu 5")
 var vehicleType: Set<String> = []
@@ -113,7 +113,6 @@ func groupCarsByType(cars: [Car]) -> [String: [Car]] {
             result[typeName]?.append(car)
         }
     }
-
     return result
 }
 
