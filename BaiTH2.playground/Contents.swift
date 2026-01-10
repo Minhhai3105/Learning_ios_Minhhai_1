@@ -9,12 +9,11 @@ class TodoManager {
     private var nextId: Int = 1
     
     func addTodo(title: String){
-        let trimmed = title.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmed.isEmpty else {
-            print("Không hợp lệ")
+        guard !title.isEmpty else{
+            print("Ko được rỗng")
             return
         }
-        let newTodo = Todo(id: nextId, title: trimmed, isCompleted: false)
+        let newTodo = Todo(id: nextId, title: title, isCompleted: true)
         todoArray.append(newTodo)
         nextId += 1
     }
@@ -22,7 +21,7 @@ class TodoManager {
         for i in 0..<todoArray.count {
             if todoArray[i].id == id {
                 todoArray[i].isCompleted.toggle()
-                continue
+                break
             }
         }
     }
@@ -30,10 +29,11 @@ class TodoManager {
         print("Danh sách todo:")
         if todoArray.isEmpty {
             print("Danh sách rỗng")
+            return
         }
         todoArray.forEach { st in
-            let icon = st.isCompleted ? "Pass" : "Fail"
-            print("\(icon) \(st.title)")
+            let status: String = st.isCompleted ? "[Pass]" : "[Fail]"
+            print("[\(status)] ID:\(st.id) - TITLE: \(st.title) ")
         }
     }
     func removeTodo(id: Int) {
@@ -53,7 +53,5 @@ manager.addTodo(title: " ")
 manager.printTodos()
 
 manager.toggleTodo(id: 1)
-manager.printTodos()
-
 manager.removeTodo(id: 2)
-manager.printTodos()
+
