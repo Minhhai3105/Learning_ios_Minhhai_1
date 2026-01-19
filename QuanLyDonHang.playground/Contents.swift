@@ -21,7 +21,7 @@ struct Order {
 enum UserStatus {
     case usernotFound
     case userInactive
-    case userActive
+    case userActive		
 
     var message: String {
         switch self {
